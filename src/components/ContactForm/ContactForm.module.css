@@ -1,0 +1,25 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid rgba(241, 184, 108, 0.39);
+  width: 250px;
+  padding: 20px;
+  align-items: flex-start;
+  border-radius: 10px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.fieldInput {
+  max-width: 200px;
+  background-color: rgb(252, 213, 188);
+  border-radius: 5px;
+  color: rgb(110, 105, 105);
+  font-weight: 900;
+  min-height: 25px;
+}
