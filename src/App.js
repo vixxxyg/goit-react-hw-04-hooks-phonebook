@@ -10,15 +10,14 @@ export default function App() {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    if (!contacts.length) {
-      const existedContacts = localStorage.getItem('contacts');
-      const parsedContacts = JSON.parse(existedContacts);
-
-      if (parsedContacts) {
-        setContacts(parsedContacts);
-      }
-      return;
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      setContacts(parsedContacts);
     }
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
@@ -54,15 +53,12 @@ export default function App() {
   };
 
   const deleteContact = contactId => {
-    const newContacts = contacts.filter(contact => contact.id !== contactId);
-    setContacts(newContacts);
+    setContacts(prev => prev.filter(contact => contact.id !== contactId));
   };
 
   const changeFilter = event => {
     setFilter(event.currentTarget.value);
   };
-
-  const FilteredContacts = getFilteredContacts();
 
   return (
     <>
@@ -72,7 +68,7 @@ export default function App() {
       <Section title="Contacts">
         <Filter onChange={changeFilter} />
         <ContactList
-          contacts={FilteredContacts}
+          contacts={getFilteredContacts()}
           onDeleteContact={deleteContact}
         ></ContactList>
       </Section>
