@@ -30,10 +30,6 @@ export default function ContactForm({ onSubmit }) {
 
     onSubmit({ name, number });
 
-    reset();
-  };
-
-  const reset = () => {
     setName('');
     setNumber('');
   };
